@@ -1,98 +1,78 @@
-# SmartTask — Student Task & Productivity Dashboard
+# SmartTask — Student Task Manager
 
-A responsive, vanilla HTML/CSS/JavaScript web app for managing assignments, exams, projects and personal to-dos from one dashboard. Built as a final internship project (frontend development track).
+A responsive, browser-based task manager for organizing assignments, exams, projects, and personal to-dos.
 
-## Live demo
-_Add your deployed URL here after publishing to GitHub Pages / Netlify / Vercel._
-
-## Problem it solves
-Students often track deadlines across scattered notes and apps. SmartTask gives them one place to see what's due, add and update tasks, and follow their overall progress.
+> **Project status:** This repository is an adapted starter project based on [SmartTask — Student Task & Productivity Dashboard](https://github.com/prateek8756/SmartTask-Student-Task-Productivity-Dashboard). The original source and its author are credited here. I am using it as a learning project and will document my own changes as I understand and extend the code.
 
 ## Features
-- **Dashboard** — total/pending/in-progress/completed counts, today's tasks, a category breakdown, and an upcoming list.
-- **Task Management** — card view (ticket-stub style) or table view, with add / edit / delete / mark-complete actions.
-- **Add / Edit Task form** — validates required fields (title, category, priority, due date, status), shows inline errors, and a live character counter for the description.
-- **Task Details** — full task view with quick actions (complete, edit, delete).
-- **Profile / Settings** — editable display name/role, simulated preference toggles, and a "reset data" option.
-- **Search, filter & sort** — by keyword, status, category, priority, and due date/priority/creation order.
-- **Empty states** for no matching tasks and for tasks due today.
-- **Delete confirmation modal** and **toast notifications** for feedback on actions.
-- **Data persistence** via `localStorage` — tasks and profile settings survive a page refresh.
-- **Responsive layout** — sidebar nav on desktop/tablet, bottom tab bar on mobile.
-- **Bonus:** dark/light mode toggle, toast notifications, responsive sidebar navigation.
 
-## Tech stack
-- HTML5, CSS3 (custom properties, Flexbox/Grid, responsive media queries)
-- Vanilla JavaScript (ES6+, no frameworks, no build step)
-- `localStorage` for persistence — no backend required
+- Dashboard with task totals, due-today tasks, category breakdown, and upcoming tasks
+- Create, edit, view, complete, and delete tasks
+- Search tasks by title or description
+- Filter by status, category, and priority
+- Sort by due date, priority, or creation date
+- Save tasks and profile preferences in browser `localStorage`
+- Responsive layout with dark/light theme support
 
-## Project structure
-```
-smarttask/
-├── index.html            # Landing / welcome page
-├── dashboard.html         # Dashboard
-├── tasks.html              # Task management (list/table, filters, search, sort)
-├── task-form.html         # Add / edit task form
-├── task-details.html      # Task details view
-├── profile.html            # Profile / settings
-├── css/
-│   └── style.css          # Design system + all component styles
-├── js/
-│   ├── app.js               # Shared shell: nav, theme toggle, toast, confirm modal
-│   ├── tasks.js             # Data layer: storage, CRUD, sample data, filter/sort/stats
-│   ├── validation.js        # Task form validation
-│   ├── dashboard.js         # Dashboard rendering
-│   ├── task-list.js         # Task management page logic
-│   ├── task-form.js         # Add/edit form logic
-│   ├── task-details.js      # Task details rendering
-│   └── profile.js           # Profile/settings logic
-├── assets/                # Icons/images (inline SVGs are used directly in markup)
-└── screenshots/           # Add screenshots here for submission
-```
+## Technology
 
-## Setup instructions
-No build tools or dependencies are required.
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Browser `localStorage`
 
-1. Download or clone this repository.
-2. Open `index.html` directly in a browser, **or** serve the folder locally for the cleanest experience:
+This is a **frontend-only** application. It does not currently have a backend, database, user authentication, or cross-device synchronisation. Data is saved only in the browser and device where the app is used.
+
+## Project files
+
+All files are in the repository root:
+
+| File | Purpose |
+| --- | --- |
+| `index.html` | Landing page |
+| `dashboard.html` / `dashboard.js` | Dashboard interface and rendering |
+| `tasks.html` / `task-list.js` | Task list, search, filters, and sorting |
+| `task-form.html` / `task-form.js` | Add and edit tasks |
+| `task-details.html` / `task-details.js` | Individual task details and actions |
+| `profile.html` / `profile.js` | Local profile and preferences |
+| `tasks.js` | Task data, CRUD operations, filtering, and statistics |
+| `app.js` | Shared navigation, theme, toast, and confirmation UI |
+| `validation.js` | Task form validation |
+| `landing.js` | Landing page sample-task preview |
+| `style.css` | Application styles and responsive layout |
+
+## Run locally on macOS
+
+No package installation or build step is required.
+
+1. Download this repository as a ZIP and extract it, or open the project folder you already downloaded.
+2. Open **Terminal**.
+3. Type `cd ` (with a space after it), drag the extracted project folder from Finder into Terminal, then press **Return**.
+4. Run:
+
    ```bash
-   npx serve smarttask
-   # or
-   python3 -m http.server --directory smarttask 8000
+   python3 -m http.server 8000
    ```
-3. The app seeds 10 sample tasks into `localStorage` on first load. Use **Reset all task data** on the Profile page at any time to restore that sample set.
 
-## Data model
-Each task is stored as:
-```json
-{
-  "id": "t_...",
-  "title": "string",
-  "description": "string",
-  "category": "Assignment | Exam | Project | Reading | Personal | Other",
-  "priority": "low | medium | high",
-  "dueDate": "YYYY-MM-DD",
-  "status": "pending | in-progress | completed",
-  "createdAt": "YYYY-MM-DD"
-}
-```
+5. Open [http://localhost:8000](http://localhost:8000) in your browser.
+6. Start at the landing page, then try the Dashboard, Tasks, Add task, and Profile pages.
 
-## Design notes
-The task card is styled as a due-date "ticket stub" — a perforated divider separates the task details from a stub showing the due date and priority flag — to reinforce the idea of a deadline you tear off once it's handled. Completed tasks get a rotated "DONE" stamp. The palette pairs an ink-navy surface with an amber "highlighter" accent, a display serif (Fraunces) for headings, Manrope for UI text, and IBM Plex Mono for dates and stats.
+To stop the local server, return to Terminal and press **Control + C**.
 
-## Testing checklist
-- [x] App loads without console errors
-- [x] All navigation links/buttons work
-- [x] New tasks can be created
-- [x] Tasks can be edited and deleted
-- [x] Status changes work correctly
-- [x] Search, filter and sort produce correct results
-- [x] Data remains available after refreshing the page
-- [x] Forms show validation messages
-- [x] Works on desktop and mobile widths
-- [x] No overlapping layout, broken images, or unreadable text
+You can also open `index.html` directly in a browser, but using the local server is the recommended way to test the pages together.
 
-## Challenges & possible improvements
-- Currently single-user/simulated (no real backend or auth) — a future version could sync tasks to a real API.
-- Category and priority lists are fixed in `tasks.js`; a future version could let users manage custom categories.
-- Drag-and-drop status changes and a productivity chart are natural next bonus features to add.
+## Try the app
+
+1. Open **Add task** and enter a title, category, priority, due date, and status.
+2. Save the task and confirm it appears in the task list and dashboard.
+3. Edit a task, mark it completed, and delete a test task.
+4. Refresh the page and confirm that your tasks remain saved in the same browser.
+5. Try search, filters, sorting, and the theme toggle.
+
+The app creates sample tasks on first run. Use the reset option in Profile only when you want to clear your browser's saved task data and restore the sample data.
+
+## Attribution
+
+Starter project: [prateek8756/SmartTask-Student-Task-Productivity-Dashboard](https://github.com/prateek8756/SmartTask-Student-Task-Productivity-Dashboard).
+
+Please retain the original project's copyright and license notices. Any additional changes made in this repository should be described accurately in future commits.
