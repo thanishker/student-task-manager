@@ -159,7 +159,7 @@
       const raw = localStorage.getItem(PROFILE_KEY);
       if (raw) return JSON.parse(raw);
     } catch (e) { /* ignore */ }
-    const def = { name: 'Prateek Pathak', role: 'Computer Science Student', email: 'prateek.pathak405@gmail.com', theme: 'dark', notifications: true, compactView: false };
+    const def = { name: 'Student', role: 'Computer Science Student', email: '', theme: 'dark', notifications: true, compactView: false };
     localStorage.setItem(PROFILE_KEY, JSON.stringify(def));
     return def;
   }
