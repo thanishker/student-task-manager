@@ -8,7 +8,7 @@
     const profile = D.getProfile();
     document.getElementById('profileName').textContent = profile.name;
     document.getElementById('profileRole').textContent = profile.role;
-    document.getElementById('profileEmail').textContent = profile.email;
+    document.getElementById('profileEmail').textContent = profile.email || 'Local demo · No account required';
     document.getElementById('avatarInitials').textContent = profile.name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase();
 
     const notifToggle = document.getElementById('notifToggle');
